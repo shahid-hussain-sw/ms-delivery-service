@@ -1,0 +1,9 @@
+graphql:
+  packages: "com.delivery"
+
+logging:
+  level:
+    org:
+      springframework:
+        data:
+          r2dbc: DEBUG
