@@ -4,6 +4,10 @@ import com.delivery.enum.DeliveryStatus
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
+/**
+ * DeliveryUtil that holds all the common validation.
+ *
+ */
 class DeliveryUtil {
 
     /**
@@ -14,13 +18,13 @@ class DeliveryUtil {
      */
     companion object {
         fun getStatus(expectedDate: String): String {
-        val dateFormater = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.[SSS]'Z'")
-        val localDateTime = LocalDateTime.parse(expectedDate, dateFormater)
-        val sysLocalDateTime = LocalDateTime.now()
-        if (sysLocalDateTime.isEqual(localDateTime) || sysLocalDateTime.isAfter(localDateTime)) {
-            return DeliveryStatus.RECEIVED.toString()
+            val dateFormater = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.[SSS]'Z'")
+            val localDateTime = LocalDateTime.parse(expectedDate, dateFormater)
+            val sysLocalDateTime = LocalDateTime.now()
+            if (sysLocalDateTime.isEqual(localDateTime) || sysLocalDateTime.isAfter(localDateTime)) {
+                return DeliveryStatus.RECEIVED.toString()
+            }
+            return DeliveryStatus.NOT_RECEIVED.toString()
         }
-        return DeliveryStatus.NOT_RECEIVED.toString()
-    }
     }
 }

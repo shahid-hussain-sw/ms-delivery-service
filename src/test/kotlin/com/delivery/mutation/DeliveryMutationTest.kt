@@ -22,7 +22,7 @@ class DeliveryMutationTest {
     private lateinit var deliveryMutation: DeliveryMutation
 
     /**
-     * Verify delivery with delivery i d test
+     * Verify delivery with delivery id test
      *
      */
     @Test

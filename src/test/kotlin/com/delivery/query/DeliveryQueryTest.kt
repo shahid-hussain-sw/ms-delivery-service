@@ -62,7 +62,7 @@ class DeliveryQueryTest {
 
     private fun getDelivery(): Mono<List<Delivery>> {
         val delivery = Delivery(101, "Bananas", "JungleInc", 1000000, "2027-01-08T07:17:48.237Z", "TheMoon", "RECEIVED")
-       val deliveryList = mutableListOf<Delivery>()
+        val deliveryList = mutableListOf<Delivery>()
         deliveryList.add(delivery)
         return Mono.just(deliveryList)
     }

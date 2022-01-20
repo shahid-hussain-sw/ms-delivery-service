@@ -9,9 +9,20 @@ import org.springframework.r2dbc.connection.init.CompositeDatabasePopulator
 import org.springframework.r2dbc.connection.init.ConnectionFactoryInitializer
 import org.springframework.r2dbc.connection.init.ResourceDatabasePopulator
 
+/**
+ * Database configuration that initialize the database configuration
+ *
+ * @constructor Create empty Database configuration
+ */
 @Configuration
 class DatabaseConfiguration {
 
+    /**
+     * Initializer the database with ddl and dml quries
+     *
+     * @param connectionFactory
+     * @return
+     */
     @Bean
     fun initializer(connectionFactory: ConnectionFactory): ConnectionFactoryInitializer {
         val initializer = ConnectionFactoryInitializer()
