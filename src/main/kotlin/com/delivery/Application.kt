@@ -4,7 +4,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 /**
- *Main class that holds the main method
+ * Main class that holds the main method.
  *
  */
 @SpringBootApplication

@@ -5,7 +5,7 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 /**
- * DeliveryUtil that holds all the common validation.
+ * Utility class that holds all the common validation.
  *
  */
 class DeliveryUtil {

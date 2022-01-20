@@ -15,9 +15,9 @@ import reactor.core.publisher.Flux
 interface DeliveryRepository : ReactiveCrudRepository<Delivery, Long>{
 
     /**
-     * Find all deliveries by status like that are not received yet
+     * Finds all deliveries by status like that are not received yet.
      *
-     * @param status the status
+     * @param status the delivery status
      * @return the delivery details
      */
     fun findAllByStatus(status: String): Flux<Delivery>

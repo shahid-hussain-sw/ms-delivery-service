@@ -12,21 +12,22 @@ import org.springframework.boot.test.context.SpringBootTest
 import reactor.core.publisher.Mono
 
 /**
- * Delivery mutation tests
+ * Delivery mutation test
  *
- * @constructor Create empty Delivery mutation tests
+ * @constructor Create empty Delivery mutation test
  */
 @SpringBootTest
 class DeliveryMutationTest {
 
     private lateinit var deliveryMutation: DeliveryMutation
 
+
     /**
-     * Verify delivery with delivery id test
+     * Test update delivery status with status expect empty delivery
      *
      */
     @Test
-    fun verifyDeliveryWithDeliveryIDTest() {
+    fun testUpdateDeliveryStatusWithStatusExpectEmptyDelivery() {
         runBlocking {
             val service = mock(DeliveryServiceImpl::class.java)
             `when`(service.updateDeliveryStatus(Mockito.anyLong())).thenReturn(getEmptyDelivery())
@@ -44,12 +45,13 @@ class DeliveryMutationTest {
 
     }
 
+
     /**
-     * Verify delivery test
+     * Test update delivery status with status expect delivery details
      *
      */
     @Test
-    fun verifyDeliveryTest() {
+    fun testUpdateDeliveryStatusWithStatusExpectDeliveryDetails() {
         runBlocking {
             val service = mock(DeliveryServiceImpl::class.java)
             `when`(service.updateDeliveryStatus(Mockito.anyLong())).thenReturn(getDelivery())

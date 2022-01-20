@@ -19,34 +19,36 @@ class DeliveryQueryTest {
 
     private lateinit var deliveryQuery: DeliveryQuery
 
+
     /**
-     * Verify delivery with delivery id test.
+     * Test get deliveries with received status then no delivery found.
      *
      */
     @Test
-    fun verifyDeliveryWithDeliveryIDTest() {
+    fun testGetDeliveriesWithReceivedStatusThenNoDeliveryFound() {
         runBlocking {
             val service = Mockito.mock(DeliveryServiceImpl::class.java)
-            Mockito.`when`(service.getDeliveries()).thenReturn(Mono.empty())
+            Mockito.`when`(service.getDeliveries(Mockito.anyString())).thenReturn(Mono.empty())
             deliveryQuery = DeliveryQuery(service)
-            val delivery = deliveryQuery.getDeliveries()
+            val delivery = deliveryQuery.getDeliveries("RECEIVED")
             Assertions.assertNotNull(delivery)
             Assertions.assertEquals(0, delivery.size)
         }
 
     }
 
+
     /**
-     * Verify delivery test
+     * Test get deliveries with received status then get list of deliveries.
      *
      */
     @Test
-    fun verifyDeliveryTest() {
+    fun testGetDeliveriesWithReceivedStatusThenGetListOfDeliveries() {
         runBlocking {
             val service = Mockito.mock(DeliveryServiceImpl::class.java)
-            Mockito.`when`(service.getDeliveries()).thenReturn(getDelivery())
+            Mockito.`when`(service.getDeliveries(Mockito.anyString())).thenReturn(getDelivery())
             deliveryQuery = DeliveryQuery(service)
-            val delivery = deliveryQuery.getDeliveries()
+            val delivery = deliveryQuery.getDeliveries("RECEIVED")
             Assertions.assertNotNull(delivery)
             Assertions.assertEquals(1, delivery.size)
             Assertions.assertEquals(101, delivery.get(0).deliveryId)

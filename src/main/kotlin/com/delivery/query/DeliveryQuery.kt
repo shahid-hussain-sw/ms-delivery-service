@@ -7,8 +7,8 @@ import kotlinx.coroutines.reactive.awaitFirstOrDefault
 import org.springframework.stereotype.Component
 
 /**
- * Delivery Query that handles all the query details like to fetch all deliveries details that are received or not
- * received.
+ * Delivery Query that handles all the query details like
+ * to fetch all deliveries details that are received or not received.
  *
  * @property deliveryService  the delivery service
  */
@@ -16,11 +16,12 @@ import org.springframework.stereotype.Component
 class DeliveryQuery(private var deliveryService: DeliveryService) : Query {
 
     /**
-     * Gets all deliveries details that received or not received
+     * Gets all deliveries details that received or not received.
      *
-     * @return the list of deliveries details
+     * @param status the delivery status
+     * @return the list of deliveries details that are not received yet
      */
-    suspend fun getDeliveries(): List<Delivery> {
-        return deliveryService.getDeliveries().awaitFirstOrDefault(listOf())
+    suspend fun getDeliveries(status: String): List<Delivery> {
+        return deliveryService.getDeliveries(status).awaitFirstOrDefault(listOf())
     }
 }

@@ -12,9 +12,9 @@ import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 
 /**
- * Delivery service impl tests
+ * Delivery service impl test
  *
- * @constructor Create empty Delivery service impl tests
+ * @constructor Create empty Delivery service impl test
  */
 @SpringBootTest
 class DeliveryServiceImplTest {
@@ -22,11 +22,11 @@ class DeliveryServiceImplTest {
     private lateinit var deliveryServiceImpl: DeliveryServiceImpl
 
     /**
-     * Updates delivery status when not delivery found against id test.
+     * Test update delivery status when no delivery found against id expect delivery empty object.
      *
      */
     @Test
-    fun updateDeliveryStatusWhenNotDeliveryFoundAgainstIDTest() {
+    fun testUpdateDeliveryStatusWhenNoDeliveryFoundAgainstIDExpectDeliveryEmptyObject() {
         val repository = mock(DeliveryRepository::class.java)
         Mockito.`when`(repository.findById(Mockito.anyLong())).thenReturn(Mono.empty())
         runBlocking {
@@ -44,12 +44,13 @@ class DeliveryServiceImplTest {
         }
     }
 
+
     /**
-     * Update delivery status test
+     * Test update delivery status when delivery found against i d expect delivery object.
      *
      */
     @Test
-    fun updateDeliveryStatusTest() {
+    fun testUpdateDeliveryStatusWhenDeliveryFoundAgainstIDExpectDeliveryObject() {
         val repository = mock(DeliveryRepository::class.java)
         Mockito.`when`(repository.findById(Mockito.anyLong())).thenReturn(getMonoDelivery())
         Mockito.`when`(repository.save(Mockito.any())).thenReturn(getMonoDelivery())
@@ -70,17 +71,18 @@ class DeliveryServiceImplTest {
         }
     }
 
+
     /**
-     * Get deliveries test
+     * Test get deliveries with id expect list of deliveries.
      *
      */
     @Test
-    fun getDeliveriesTest() {
+    fun testGetDeliveriesWithIdExpectListOfDeliveries() {
         val repository = mock(DeliveryRepository::class.java)
         Mockito.`when`(repository.findAllByStatus(Mockito.anyString())).thenReturn(getFluxDelivery())
         runBlocking {
             deliveryServiceImpl = DeliveryServiceImpl(repository)
-            val service = deliveryServiceImpl.getDeliveries()
+            val service = deliveryServiceImpl.getDeliveries("RECEIVED")
             Assertions.assertNotNull(service)
             Assertions.assertNotNull(service.block())
             val delivery = service.block()
